@@ -1,23 +1,66 @@
-Frontend Task:
-
-Create a login Authentication system to React and React-router. 
-
-Requirements:
-
-
 Create four pages to React, SignUp, Login, Dashboard, and 404.
 
-Before login, the user should not be able to access any routes other than the Login. The after login routes should be protected.
+Before login, the user should not be able to access any routes other than the Login. 
+The after login routes should be protected.
 
 If you enter any route which does not match, it should take the user to 404 not found page.
 
-After the login is successful, the user should be automatically redirected to the Dashboard page even if you enter the login route.
+After the login is successful, the user should be automatically redirected to the Dashboard
+ page even if you enter the login route.
 
-The validations of login credentials should be done against a user json which you can form after the signUp. You can store this in browser storage.
+The validations of login credentials should be done against a user json which you can form
+ after the signUp. You can store this in browser storage.
 
 You should be able to log out the signed User as well.
 
 The Signup and Login forms should be validated.
 
 The code should be in a standard format .i.e Either ES6 or ES5. Not a mix of both.
+Note*: The Deadline of the task is three days from the day you start. You are not 
+supposed to use JQuery, Bootstrap, Redux or any other library. If you use any library 
+there should be a specific reason for the same. The quality of the code is of prior 
+importance and completing the task before time shall not go unnoticed
+
+
+
+
+
+// for pages use react router dom and react loadable
+
+Pages: 
+1. SignUp
+2. Login
+3. Dashboard
+4. 404.
+
+// use formik for form 
+Public route -> Login , sign up
+
+Private routes:
+Sign up 
+	Dashboard
+	404
+
+Invalid routes:
+	404
+
+Sign up page should store value and which can be checked in login page 
+// after sign up page store the value in local storage for now then we will shift it to firebase 
+ 
+Redirect to login after sign up
+//
+
+On login success redirect to Dashboard even if enter login route
+// on every page change we need to check if the user is logged in or not
+
+
+On Dashboard should have a logout button which logs out 
+// clear the data from cookie or local storage
+
+
+for api calls and a center store we need react-redux
+
+when the app starts we need to check if the user is logged in or not if yes then navigate it to Dashboard
+
+
 
