@@ -1,0 +1,23 @@
+Frontend Task:
+
+Create a login Authentication system to React and React-router. 
+
+Requirements:
+
+
+Create four pages to React, SignUp, Login, Dashboard, and 404.
+
+Before login, the user should not be able to access any routes other than the Login. The after login routes should be protected.
+
+If you enter any route which does not match, it should take the user to 404 not found page.
+
+After the login is successful, the user should be automatically redirected to the Dashboard page even if you enter the login route.
+
+The validations of login credentials should be done against a user json which you can form after the signUp. You can store this in browser storage.
+
+You should be able to log out the signed User as well.
+
+The Signup and Login forms should be validated.
+
+The code should be in a standard format .i.e Either ES6 or ES5. Not a mix of both.
+
