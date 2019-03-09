@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { PrivateRoutes } from './PrivateRoutes';
 
@@ -24,7 +24,8 @@ export class AppRouter extends Component {
 		return (
 			<Router>
 				<Switch>
-					<Route exact path="/" name="login" component={Login} />
+				<Route exact path="/" render={() => (<Redirect to="/dashboard" />)} />
+					<Route exact path="/login" name="login" component={Login} />
 					<PrivateRoutes exact path="/dashboard" component={Dashboard} />
 					<Route exact path="/*" name="pageNotFound" component={PageNotFound} />
 				</Switch>
