@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from 'redux-saga'
 
-import { AppRouter } from './common/AppRouter';
 import { rootSaga } from './common/store/rootSaga';
 import { rootReducer } from './common/store/rootReducer';
 import { configureStore } from './common/store/configureStore';
+import { AppRouter } from './common/routes/AppRouter';
 
 const sagaMiddleware = createSagaMiddleware();
 
