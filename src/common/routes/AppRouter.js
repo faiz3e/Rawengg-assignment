@@ -18,7 +18,10 @@ const PageNotFound = Loadable({
 	loader: () => import('../../home/pages/pageNotFound/PageNotFound'),
 	loading
 });
-
+const SignUp = Loadable({
+	loader: () => import('../../home/pages/signUp/SignUp'),
+	loading
+});
 export class AppRouter extends Component {
 	render() {
 		return (
@@ -27,6 +30,8 @@ export class AppRouter extends Component {
 				<Route exact path="/" render={() => (<Redirect to="/dashboard" />)} />
 					<Route exact path="/login" name="login" component={Login} />
 					<PrivateRoutes exact path="/dashboard" component={Dashboard} />
+					<PrivateRoutes exact path="/signup" component={SignUp} />
+				
 					<Route exact path="/*" name="pageNotFound" component={PageNotFound} />
 				</Switch>
 			</Router>

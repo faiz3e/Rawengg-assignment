@@ -5,14 +5,16 @@ import './button.style.css'
 
 export class Button extends Component {
 	render() {
-		const { title, onClicked } = this.props;
+		const { title, onClicked, type ,disabled=false} = this.props;
 		return (
 			<div >
 				<button
 					className="ghost"
 					id="signIn"
+					type={type}
+					disabled={disabled}
 					onClick={onClicked()}
-				>{title || 'No Text as Props'}</button>
+				>{title || 'SOME TEXT'}</button>
 			</div>
 		);
 	}

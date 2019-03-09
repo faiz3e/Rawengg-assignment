@@ -5,11 +5,26 @@ import './InputBox.style.css';
 
 export class InputBox extends Component {
 	render() {
-		const { type, placeholder, disabled = false } = this.props;
+		// const { type, name, placeholder, onChange, onBlur, value, disabled = false, errors } = this.props;
+		const {field, form: { touched, errors },type}=this.props
 		return (
-			<div >
-				<input type={type} placeholder={placeholder} disabled={disabled} />
-			</div>
+			<React.Fragment >
+				{/* <input
+					type={type}
+					name={name}
+					placeholder={placeholder}
+					disabled={disabled}
+					onChange={onChange}
+					onBlur={onBlur}
+					value={value}
+				/> */}
+			<input type={type} {...field} {...this.props} />
+					{/* <small>{errors}</small>
+				 */}
+				     {touched[field.name] &&
+      errors[field.name] && <div className="error">{errors[field.name]}</div>}
+  
+			</React.Fragment>
 		);
 	}
 }
