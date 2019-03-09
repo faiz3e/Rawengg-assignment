@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import { PrivateRoutes } from './PrivateRoutes';
 
 const loading = () => <div>Loading...</div>;
 
@@ -23,12 +24,9 @@ export class AppRouter extends Component {
 		return (
 			<Router>
 				<Switch>
-					<Route exact path="/login" name="Page 500" component={Login} />
-					<Route exact path="/dashboard" name="Dashboard" component={Dashboard} />
-					<Route exact path="/" name="Login" component={Login} />
+					<Route exact path="/" name="login" component={Login} />
+					<PrivateRoutes exact path="/dashboard" component={Dashboard} />
 					<Route exact path="/*" name="pageNotFound" component={PageNotFound} />
-
-					
 				</Switch>
 			</Router>
 		);
