@@ -6,6 +6,7 @@ import { Button, InputBox } from '../../../common/components';
 import { validateEmail, validatePassword } from '../../../common/helpers/validators';
 import { doLogin, doLogout, rehydrateReducer } from './ActionCreators';
 import { selectLoginState } from './selector';
+import { doSignUp } from '../signUp/ActionCreators';
 
 class Login extends Component {
   componentDidMount() {
@@ -36,9 +37,7 @@ class Login extends Component {
               <Button title='LOG IN' type="submit" onClicked={() => {
               }} />
               <Button title='SIGN UP' type='button' onClicked={
-                () => { }
-                //redirect to SIGN UP
-                // ()=>this.props.logout
+                ()=>{}
               } >
               </Button>
             </form>
@@ -58,6 +57,7 @@ const mapStateToprops = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     login: (values) => dispatch(doLogin(values)),
+    signup:(values)=>dispatch(doSignUp(values)),
     rehydrateReducer: (values) => dispatch(rehydrateReducer(values))
   }
 }

@@ -32,9 +32,9 @@ class AppRouterComponent extends Component {
 				<Switch>
 					<Route exact path="/" render={() => (<Redirect to="/dashboard" />)} />
 					<Route exact path="/login" name="login" component={Login} />
-					<PrivateRoutes exact path="/dashboard" component={Dashboard} isLoggedIn={this.props.isLoggedIn}/>
-					<PrivateRoutes exact path="/signup" component={SignUp}  isLoggedIn={this.props.isLoggedIn}/>
-					<Route exact path="/*" name="pageNotFound" component={PageNotFound}/>
+					<Route exact path="/signup" name="login" component={SignUp} />
+					<PrivateRoutes exact path="/dashboard" component={Dashboard} isLoggedIn={this.props.isLoggedIn} />
+					<Route exact path="/*" name="pageNotFound" component={PageNotFound} />
 				</Switch>
 			</Router>
 		);
@@ -42,9 +42,9 @@ class AppRouterComponent extends Component {
 }
 
 const mapStateToprops = (state) => {
-  return {
-    isLoggedIn: selectLoginState(state)
-  }
+	return {
+		isLoggedIn: selectLoginState(state)
+	}
 }
 
 export const AppRouter = connect(mapStateToprops)(AppRouterComponent)
