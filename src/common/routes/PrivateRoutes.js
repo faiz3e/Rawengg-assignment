@@ -1,17 +1,14 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-export const PrivateRoutes = ({ component: Component, ...rest }) => (
-	<div>
+export const PrivateRoutes = ({ component: Component, isLoggedIn, ...rest }) => (
+	<React.Fragment>
 		<Route {...rest} render={(props) => (
-			isAuth === true
+			isLoggedIn === true
 				?
-				<div>
-					<Component {...props} />
-				</div> :
+				<Component {...props} />
+				:
 				<Redirect to={{ pathname: '/login', state: { from: props.location } }} />
 		)} />
-	</div>
+	</React.Fragment>
 )
-
-const isAuth = true;

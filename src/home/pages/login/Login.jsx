@@ -1,46 +1,66 @@
 import React, { Component } from 'react';
-import { Button, InputBox } from '../../../common/components';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import { Formik, Field } from 'formik';
 
-import { Formik,Field } from 'formik';
+import { Button, InputBox } from '../../../common/components';
 import { validateEmail, validatePassword } from '../../../common/helpers/validators';
+import { doLogin, doLogout, rehydrateReducer } from './ActionCreators';
+import { selectLoginState } from './selector';
 
 class Login extends Component {
+  componentDidMount() {
+    const localData = localStorage.getItem('userData');
+    if (localData && localData.length > 0) {
+      let localDataCopy = JSON.parse(localData)
+      this.props.rehydrateReducer(localDataCopy)
+    }
+  }
+  componentDidUpdate() {
+    this.props.isLoggedIn &&
+      this.props.history.push('/')
+  }
+
   render() {
     return (
       <div >
         <Formik initialValues={{ email: '', password: '' }}
-         
-
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+          onSubmit={(values) => {
+            this.props.login(values)
           }}
         >
-          {({handleSubmit}) => (
-              <form onSubmit={handleSubmit}>
-                <h2>login</h2>
-                <Field name="email" component={InputBox} type={'email'} validate={validateEmail} placeholder={'Email Id'}/>
-                <Field name="password" component={InputBox} type={'password'} placeholder={'Password'} validate={validatePassword}/>
-
-                <Button title='LOG IN' type="submit" onClicked={() => {
-                }} />
-                <Button title='SIGN UP' onClicked={() => {
-                  //redirect to SIGN UP
-                }} >
-                  Submit
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <h2>login</h2>
+              <Field name="email" component={InputBox} type={'email'} validate={validateEmail} placeholder={'Email Id'} />
+              <Field name="password" component={InputBox} type={'password'} placeholder={'Password'} validate={validatePassword} />
+              <Button title='LOG IN' type="submit" onClicked={() => {
+              }} />
+              <Button title='SIGN UP' type='button' onClicked={
+                () => { }
+                //redirect to SIGN UP
+                // ()=>this.props.logout
+              } >
               </Button>
-              </form>
-            )}
-
-
-
+            </form>
+          )}
         </Formik>
       </div>
     );
   }
 }
 
-export default Login;
+const mapStateToprops = (state) => {
+  return {
+    isLoggedIn: selectLoginState(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (values) => dispatch(doLogin(values)),
+    rehydrateReducer: (values) => dispatch(rehydrateReducer(values))
+  }
+}
+
+export default Login = connect(mapStateToprops, mapDispatchToProps)(Login)
+

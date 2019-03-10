@@ -1,19 +1,19 @@
 Create four pages to React, SignUp, Login, Dashboard, and 404.
 
-Before login, the user should not be able to access any routes other than the Login. 
+[] Before login, the user should not be able to access any routes other than the Login. 
 The after login routes should be protected.
 
-If you enter any route which does not match, it should take the user to 404 not found page.
+[DONE] If you enter any route which does not match, it should take the user to 404 not found page.
 
-After the login is successful, the user should be automatically redirected to the Dashboard
+[] After the login is successful, the user should be automatically redirected to the Dashboard
  page even if you enter the login route.
 
-The validations of login credentials should be done against a user json which you can form
+[] The validations of login credentials should be done against a user json which you can form
  after the signUp. You can store this in browser storage.
 
-You should be able to log out the signed User as well.
+[] You should be able to log out the signed User as well.
 
-The Signup and Login forms should be validated.
+[] The Signup and Login forms should be validated.
 
 The code should be in a standard format .i.e Either ES6 or ES5. Not a mix of both.
 Note*: The Deadline of the task is three days from the day you start. You are not 
@@ -61,6 +61,30 @@ On Dashboard should have a logout button which logs out
 for api calls and a center store we need react-redux
 
 when the app starts we need to check if the user is logged in or not if yes then navigate it to Dashboard
+
+
+
+
+[] check and write logout functionality with logout button   -15min  12:25
+[] sigun up page UI					     -15min
+[] sigin up page fotm and validation 			     -10min
+[] sigin up page api					     -20min
+[] check redirection from routes			     -10min
+[] write islogged in from redux store 			     -10min
+
+
+2hr 
+
+
+logout functionality will be in 2 senario 
+1 in button clicked on logout 
+2 login failed 
+ 
+
+
+
+
+
 
 
 

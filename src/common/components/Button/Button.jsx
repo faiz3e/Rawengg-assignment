@@ -10,7 +10,6 @@ export class Button extends Component {
 			<div >
 				<button
 					className="ghost"
-					id="signIn"
 					type={type}
 					disabled={disabled}
 					onClick={onClicked()}
