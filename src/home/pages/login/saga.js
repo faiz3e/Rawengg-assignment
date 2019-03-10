@@ -15,7 +15,8 @@ function* workerSaga(action) {
 			yield put({ type: LOGIN_SUCCESS, payload: response })
 			yield call(saveInLocalStorage, response)
 		} else {
-			yield put({ type: LOGIN_FAILED, payload: response })
+			console.log("response", response);
+			yield put({ type: LOGIN_FAILED, payload: response.message })
 			yield call(removeInLocalStorage)
 		}
 	}

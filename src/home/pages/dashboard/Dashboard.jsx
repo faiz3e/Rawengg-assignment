@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import { Button } from '../../../common/components';
 import { connect } from 'react-redux'
 import { doLogout } from '../login/ActionCreators';
-import { selectLoginState } from '../login/selector';
+import { selectLoginState, selectUserInfo } from '../login/selector';
 
 class Dashboard extends Component {
-  componentDidUpdate(){
-    !this.props.isLoggedIn&&
-    this.props.history.push('/login')
+  componentDidUpdate() {
+    !this.props.isLoggedIn &&
+      this.props.history.push('/login')
   }
+
   render() {
     return (
       <React.Fragment >
         <div>Dashboard</div>
+        <br />
+        <h3>logged in with account {this.props.userEmailId} </h3>
         <Button title='LOGOUT' onClicked={
           () => this.props.logout
         } />
@@ -23,7 +26,8 @@ class Dashboard extends Component {
 
 const mapStateToprops = (state) => {
   return {
-    isLoggedIn: selectLoginState(state)
+    isLoggedIn: selectLoginState(state),
+    userEmailId: selectUserInfo(state)
   }
 }
 

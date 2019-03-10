@@ -71,8 +71,8 @@ when the app starts we need to check if the user is logged in or not if yes then
 [] sigin up page api					     -20min
 [] check redirection from routes			     -10min
 [] write islogged in from redux store 			     -10min
-
-
+[] loading and success msg in login errr msg
+ 
 2hr 
 
 

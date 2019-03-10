@@ -1,17 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-
-
 body {
-	background: #f6f5f7;
+	background: #ededee;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
 }
-
 
 button {
 	border-radius: 20px;
@@ -49,5 +45,6 @@ form {
 	padding: 0 50px;
 	height: 100%;
 	width: 100%;
+	margin-top: 100px;
 	text-align: center;
 }

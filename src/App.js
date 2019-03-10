@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from "redux";
-import createSagaMiddleware from 'redux-saga'
 
-import { rootSaga } from './common/store/rootSaga';
-import { rootReducer } from './common/store/rootReducer';
 import { configureStore } from './common/store/configureStore';
 import { AppRouter } from './common/routes/AppRouter';
 
-const sagaMiddleware = createSagaMiddleware();
-
-const store = createStore(rootReducer, (applyMiddleware(sagaMiddleware)))
-// const store = configureStore();   // ! todo
-sagaMiddleware.run(rootSaga);
-
-store.subscribe(() => {
-  console.log("updated store", store.getState())
-})
+const store = configureStore();  
 
 class App extends Component {
   render() {

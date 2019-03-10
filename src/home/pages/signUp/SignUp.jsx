@@ -3,39 +3,72 @@ import { connect } from 'react-redux'
 import { Formik, Field } from 'formik';
 
 import { Button, InputBox } from '../../../common/components';
-import { validateEmail, validatePassword } from '../../../common/helpers/validators';
-import { doSignUp } from './ActionCreators';
+import { validateEmail, validatePassword, validateUserName } from '../../../common/helpers/validators';
+import { signUpAPI } from './api';
 
 class SignUp extends Component {
+	state = {
+		signUpSuccess: false,
+		loading: false,
+		errorStatus: ''
+	}
+	startLoading = () => {
+		this.setState({ loading: true })
+	}
+
+	jumpToLogin = () => {
+		this.props.history.push('/login')
+	}
+
 	render() {
 		return (
-			<div >
-				<Formik initialValues={{ email: '', password: '' }}
-					onSubmit={(values) => {
-						console.log("calues",values);
-						this.props.signup(values)
-					}}
-				>
-					{({ handleSubmit }) => (
-						<form onSubmit={handleSubmit}>
-							<h2>Sign up</h2>
-							<Field name="email" component={InputBox} type={'email'} validate={validateEmail} placeholder={'Email Id'} />
-							<Field name="password" component={InputBox} type={'password'} placeholder={'Password'} validate={validatePassword} />
-							<Button title='SIGN UP' type="submit" onClicked={() => {
-							}} />
-						</form>
-					)}
-				</Formik>
-			</div>
+			<Formik initialValues={{ email: '', password: '', username: '' }}
+				onSubmit={(values) => {
+					this.startLoading()
+					signUpAPI(values.email, values.password).then((result) => {
+						let successFlag = false;
+						let error = ''
+						// error = result && result.status !== 200 ? result.error.message : ''
+						if (result.error)
+							error = result.error && result.error.message
+						else
+							successFlag = true
+						console.log("err", result)
+						this.setState({
+							signUpSuccess: successFlag,
+							loading: false,
+							errorStatus: error
+						})
+						return result
+					})
+				}}
+			>
+				{({ handleSubmit }) => (
+					<form onSubmit={handleSubmit}>
+						<h2>Sign up</h2>
+						<Field name="username" component={InputBox} validate={validateUserName} placeholder={'User name'} />
+						<Field name="email" component={InputBox} type={'email'} validate={validateEmail} placeholder={'Email Id'} />
+						<Field name="password" component={InputBox} type={'password'} placeholder={'Password'} validate={validatePassword} />
+						<br />
+						{!this.state.signUpSuccess &&
+							<Button title='SIGN UP' type="submit" onClicked={
+								() => this.startLoading
+							} />}
+						{this.state.loading && <p>loading .....</p>}
+
+						{this.state.errorStatus.length > 0 && <p>{this.state.errorStatus}</p>}
+
+						{this.state.signUpSuccess &&
+							<Button title='Success lets login' type="button" onClicked={
+								() => this.jumpToLogin
+							} />}
+						<br />
+					</form>
+				)}
+			</Formik>
 		);
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signup:(values)=>dispatch(doSignUp(values)),
-  }
-}
-
-export default SignUp = connect(null, mapDispatchToProps)(SignUp)
+export default SignUp 
 

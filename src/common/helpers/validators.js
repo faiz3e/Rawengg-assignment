@@ -10,13 +10,24 @@ export const validateEmail = value => {
     }
 };
 
-
 export const validatePassword = value => {
     let errorMessage;
     if (value.length === 0) {
         errorMessage = 'Cannot be empty';
         return errorMessage;
     }
+    if (value.length < 3 ) {
+        errorMessage = 'Weak password';
+        return errorMessage;
+    }
+};
+
+export const validateUserName = value => {
+    let errorMessage;
+    if (value.length === 0) {
+        errorMessage = 'Cannot be empty';
+        return errorMessage;
+    }   
 };
 
 

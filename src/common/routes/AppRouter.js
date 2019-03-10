@@ -7,7 +7,6 @@ import { selectLoginState } from '../../home/pages/login/selector';
 
 const loading = () => <div>Loading...</div>;
 
-// Pages
 const Login = Loadable({
 	loader: () => import('../../home/pages/login/Login'),
 	loading

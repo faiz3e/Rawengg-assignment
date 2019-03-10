@@ -4,11 +4,11 @@ import { Formik, Field } from 'formik';
 
 import { Button, InputBox } from '../../../common/components';
 import { validateEmail, validatePassword } from '../../../common/helpers/validators';
-import { doLogin, doLogout, rehydrateReducer } from './ActionCreators';
-import { selectLoginState } from './selector';
-import { doSignUp } from '../signUp/ActionCreators';
+import { doLogin, rehydrateReducer } from './ActionCreators';
+import { selectLoginState, selectErrorMessage } from './selector';
 
 class Login extends Component {
+
   componentDidMount() {
     const localData = localStorage.getItem('userData');
     if (localData && localData.length > 0) {
@@ -21,6 +21,10 @@ class Login extends Component {
       this.props.history.push('/')
   }
 
+  jumpToSignup = () => {
+    this.props.history.push('/signup')
+  }
+
   render() {
     return (
       <div >
@@ -31,15 +35,18 @@ class Login extends Component {
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <h2>login</h2>
+              <h2>Login</h2>
               <Field name="email" component={InputBox} type={'email'} validate={validateEmail} placeholder={'Email Id'} />
               <Field name="password" component={InputBox} type={'password'} placeholder={'Password'} validate={validatePassword} />
-              <Button title='LOG IN' type="submit" onClicked={() => {
-              }} />
+              <br />
+              <Button title='LOG IN' type="submit" onClicked={() => {}} /><br/>
               <Button title='SIGN UP' type='button' onClicked={
-                ()=>{}
-              } >
-              </Button>
+                () => this.jumpToSignup
+              }>
+              </Button><br />
+              {this.props.errorMessage.length > 0 &&
+                <p>{this.props.errorMessage.toLocaleLowerCase()}</p>
+              }
             </form>
           )}
         </Formik>
@@ -50,14 +57,14 @@ class Login extends Component {
 
 const mapStateToprops = (state) => {
   return {
-    isLoggedIn: selectLoginState(state)
+    isLoggedIn: selectLoginState(state),
+    errorMessage: selectErrorMessage(state)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     login: (values) => dispatch(doLogin(values)),
-    signup:(values)=>dispatch(doSignUp(values)),
     rehydrateReducer: (values) => dispatch(rehydrateReducer(values))
   }
 }
