@@ -33,7 +33,7 @@ class AppRouterComponent extends Component {
 					<Route exact path="/login" name="login" component={Login} />
 					<Route exact path="/signup" name="login" component={SignUp} />
 					<PrivateRoutes exact path="/dashboard" component={Dashboard} isLoggedIn={this.props.isLoggedIn} />
-					<Route exact path="/*" name="pageNotFound" component={PageNotFound} />
+					<Route path="/*" name="pageNotFound" component={PageNotFound} />
 				</Switch>
 			</Router>
 		);

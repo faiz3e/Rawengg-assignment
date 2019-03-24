@@ -5,6 +5,7 @@ import { Formik, Field } from 'formik';
 import { Button, InputBox } from '../../../common/components';
 import { validateEmail, validatePassword, validateUserName } from '../../../common/helpers/validators';
 import { signUpAPI } from './api';
+import { StatusMessage } from '../../../common/components/statusMessage/StatusMessage';
 
 class SignUp extends Component {
 	state = {
@@ -23,7 +24,7 @@ class SignUp extends Component {
 	render() {
 		return (
 			<Formik initialValues={{ email: '', password: '', username: '' }}
-				onSubmit={(values) => {
+				onSubmit={(values, { setSubmitting }) => {
 					this.startLoading()
 					signUpAPI(values.email, values.password).then((result) => {
 						let successFlag = false;
@@ -55,6 +56,7 @@ class SignUp extends Component {
 								() => this.startLoading
 							} />}
 						{this.state.loading && <p>loading .....</p>}
+						<StatusMessage message={''} />
 
 						{this.state.errorStatus.length > 0 && <p>{this.state.errorStatus}</p>}
 

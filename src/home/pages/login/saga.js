@@ -11,6 +11,8 @@ function* workerSaga(action) {
 	try {
 		yield put({ type: LOGIN_INITIATED });
 		const response = yield call(loginAPI, action.payload.email, action.payload.password);
+		console.log(response);
+		
 		if (response.registered) {
 			yield put({ type: LOGIN_SUCCESS, payload: response })
 			yield call(saveInLocalStorage, response)

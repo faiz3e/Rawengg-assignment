@@ -6,6 +6,7 @@ import { Button, InputBox } from '../../../common/components';
 import { validateEmail, validatePassword } from '../../../common/helpers/validators';
 import { doLogin, rehydrateReducer } from './ActionCreators';
 import { selectLoginState, selectErrorMessage } from './selector';
+import { StatusMessage } from '../../../common/components/statusMessage/StatusMessage';
 
 class Login extends Component {
 
@@ -31,22 +32,18 @@ class Login extends Component {
         <Formik initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
             this.props.login(values)
-          }}
-        >
+          }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <h2>Login</h2>
               <Field name="email" component={InputBox} type={'email'} validate={validateEmail} placeholder={'Email Id'} />
-              <Field name="password" component={InputBox} type={'password'} placeholder={'Password'} validate={validatePassword} />
-              <br />
-              <Button title='LOG IN' type="submit" onClicked={() => {}} /><br/>
+              <Field name="password" component={InputBox} type={'password'} placeholder={'Password'} validate={validatePassword} /><br />
+              <Button title='LOG IN' type="submit" onClicked={() => { }} /><br />
               <Button title='SIGN UP' type='button' onClicked={
                 () => this.jumpToSignup
-              }>
-              </Button><br />
-              {this.props.errorMessage.length > 0 &&
-                <p>{this.props.errorMessage.toLocaleLowerCase()}</p>
-              }
+              } />
+              <br />
+              <StatusMessage message={this.props.feedBackMessage} />
             </form>
           )}
         </Formik>
@@ -58,7 +55,7 @@ class Login extends Component {
 const mapStateToprops = (state) => {
   return {
     isLoggedIn: selectLoginState(state),
-    errorMessage: selectErrorMessage(state)
+    feedBackMessage: selectErrorMessage(state)
   }
 }
 

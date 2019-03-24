@@ -9,6 +9,13 @@ export const selectUserInfo = (state) => {
 }
 
 export const selectErrorMessage = (state) => {
-  return state.loginReducer && state.loginReducer.message 
+  if (state.loginReducer && state.loginReducer.error)
+    return state.loginReducer.message
+  if (state.loginReducer && state.loginReducer.fetching)
+    return 'Loading...'
+  if (state.loginReducer && state.loginReducer.success)
+    return ''
+  else
+    return ''
 }
 
