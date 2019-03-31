@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Formik, Field } from 'formik';
-
+import {Formik ,Field} from 'formik'
 import { Button, InputBox } from '../../../common/components';
 import { validateEmail, validatePassword } from '../../../common/helpers/validators';
 import { doLogin, rehydrateReducer } from './ActionCreators';

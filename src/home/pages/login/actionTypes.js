@@ -8,3 +8,7 @@ export const LOGOUT = 'login/LOGOUT';
 export const LOGOUT_CALL = 'login/LOGOUT_CALL'
 
 export const REHYDRATE_REDUCER = 'login/REHYDRATE_REDUCER'
+
+export const CREATE_OFFER = 'dashboard/CREATE_OFFER'
+
+

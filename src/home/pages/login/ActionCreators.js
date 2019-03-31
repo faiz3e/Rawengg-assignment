@@ -2,6 +2,7 @@ import {
 	LOGIN,
 	LOGOUT,
 	REHYDRATE_REDUCER,
+	CREATE_OFFER,
 } from './actionTypes'
 
 export function doLogin(values) {
@@ -23,4 +24,13 @@ export function rehydrateReducer(values) {
 		type: REHYDRATE_REDUCER,
 		payload: values
 	}
+}
+
+
+export function createOfferAction(values) {	
+	const counter = values
+	return {
+		type: CREATE_OFFER,
+		payload: counter 
+	};
 }
