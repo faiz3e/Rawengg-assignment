@@ -10,5 +10,4 @@ export const NavigationWrapper = (props) => {
         <div>{props.children}</div>}
     </React.Fragment>
   )
-
 }

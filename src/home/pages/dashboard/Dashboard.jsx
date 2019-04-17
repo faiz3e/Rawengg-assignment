@@ -3,10 +3,13 @@ import { Button } from '../../../common/components';
 import { connect } from 'react-redux'
 import { doLogout, createOfferAction } from '../login/ActionCreators';
 import { selectLoginState, selectUserInfo } from '../login/selector';
-
+import Log  from "../../../common/helpers/logger";
 class Dashboard extends Component {
   state = {
     counter: 1
+  }
+  componentDidMount() { 
+    Log.trace('Dashboard Component!', 'Mounting');
   }
   componentDidUpdate() {
     !this.props.isLoggedIn &&

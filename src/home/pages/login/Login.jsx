@@ -6,17 +6,23 @@ import { validateEmail, validatePassword } from '../../../common/helpers/validat
 import { doLogin, rehydrateReducer } from './ActionCreators';
 import { selectLoginState, selectErrorMessage } from './selector';
 import { StatusMessage } from '../../../common/components/statusMessage/StatusMessage';
+import Log from '../../../common/helpers/logger';
+
 
 class Login extends Component {
 
   componentDidMount() {
+    Log.trace('Login Component!', 'Mounting');
     const localData = localStorage.getItem('userData');
     if (localData && localData.length > 0) {
       let localDataCopy = JSON.parse(localData)
       this.props.rehydrateReducer(localDataCopy)
+      Log.info('Login Component!', 'rehydrating Reducer');
     }
   }
+
   componentDidUpdate() {
+    Log.trace('Login Component!', 'component Did Update');
     this.props.isLoggedIn &&
       this.props.history.replace('/dashboard')
   }
@@ -45,7 +51,7 @@ class Login extends Component {
   }
 }
 
-const mapStateToprops = (state) => {
+const mapStateToProps = (state) => {
   return {
     isLoggedIn: selectLoginState(state),
     feedBackMessage: selectErrorMessage(state)
@@ -59,5 +65,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default Login = connect(mapStateToprops, mapDispatchToProps)(Login)
+export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
 
