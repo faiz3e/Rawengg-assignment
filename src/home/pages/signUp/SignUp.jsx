@@ -55,8 +55,8 @@ class SignUp extends Component {
 							<Button title='SIGN UP' type="submit" onClicked={
 								() => this.startLoading
 							} />}
-						{this.state.loading && <p>loading .....</p>}
-						<StatusMessage message={''} />
+					
+						<StatusMessage message={'sdsfsd'} />
 
 						{this.state.errorStatus.length > 0 && <p>{this.state.errorStatus}</p>}
 

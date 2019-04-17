@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { Button } from '../../../common/components';
 import { connect } from 'react-redux'
+
+import { Button } from '../../../common/components';
 import { doLogout, createOfferAction } from '../login/ActionCreators';
 import { selectLoginState, selectUserInfo } from '../login/selector';
-import Log  from "../../../common/helpers/logger";
+import Log from "../../../common/helpers/logger";
+import ListComponent from './ListComponent';
+
 class Dashboard extends Component {
   state = {
-    counter: 1
+    counter: 1,
   }
-  componentDidMount() { 
+  componentDidMount() {
     Log.trace('Dashboard Component!', 'Mounting');
   }
   componentDidUpdate() {
@@ -37,10 +40,10 @@ class Dashboard extends Component {
           () => this.props.logout
         } />
         <input type={'number'} value={this.state.counter} onChange={e => this.updateInputValue(e)} />
-
         <Button title='CREATE OFFER' onClicked={
           () => this.callOffer
         } />
+        <ListComponent />
       </React.Fragment>
     );
   }
@@ -61,4 +64,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default Dashboard = connect(mapStateToprops, mapDispatchToProps)(Dashboard)
-

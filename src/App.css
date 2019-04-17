@@ -31,3 +31,11 @@
     transform: rotate(360deg);
   }
 }
+
+
+.skeleton{
+     width: 100px;
+     height: 30px;
+     background-color: 'lightGray';
+    margin-top: 20px;  
+}
