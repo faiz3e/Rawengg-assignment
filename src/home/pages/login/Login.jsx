@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {Formik ,Field} from 'formik'
+import { Formik, Field } from 'formik'
 import { Button, InputBox } from '../../../common/components';
 import { validateEmail, validatePassword } from '../../../common/helpers/validators';
 import { doLogin, rehydrateReducer } from './ActionCreators';
@@ -18,11 +18,7 @@ class Login extends Component {
   }
   componentDidUpdate() {
     this.props.isLoggedIn &&
-      this.props.history.push('/')
-  }
-
-  jumpToSignup = () => {
-    this.props.history.push('/signup')
+      this.props.history.replace('/dashboard')
   }
 
   render() {
@@ -38,9 +34,7 @@ class Login extends Component {
               <Field name="email" component={InputBox} type={'email'} validate={validateEmail} placeholder={'Email Id'} />
               <Field name="password" component={InputBox} type={'password'} placeholder={'Password'} validate={validatePassword} /><br />
               <Button title='LOG IN' type="submit" onClicked={() => { }} /><br />
-              <Button title='SIGN UP' type='button' onClicked={
-                () => this.jumpToSignup
-              } />
+              <Button title='SIGN UP' type='button' onClicked={() => { }} navigateTo={'/signup'} />
               <br />
               <StatusMessage message={this.props.feedBackMessage} />
             </form>

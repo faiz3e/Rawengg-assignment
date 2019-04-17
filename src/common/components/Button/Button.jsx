@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './button.style.css'
+import { NavigationWrapper } from './NavigationWrapper';
 
 
 export const Button = (props) => {
-	const { title, onClicked, type, disabled = false } = props;
+	let { title, onClicked, type, disabled = false, navigateTo = null, className = "ghost" } = props;
 	return (
-		<div >
-			<button
-				className="ghost"
-				type={type}
-				disabled={disabled}
-				onClick={onClicked()}
-			>{title || 'SOME TEXT'}</button>
+		<div>
+			<NavigationWrapper navigateTo={navigateTo}>
+				<button
+					className={className}
+					type={type}
+					disabled={disabled}
+					onClick={onClicked()}
+				>{title || 'SOME TEXT'}
+				</button>
+			</NavigationWrapper>
 		</div>
 	);
 }
