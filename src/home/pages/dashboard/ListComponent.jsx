@@ -1,35 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Button } from '../../../common/components';
 import Log from '../../../common/helpers/logger';
 import SmartLoaderWrapper from '../../../common/components/SmartLoaderWrapper/SmartLoaderWrapper';
-import { ListComponentStyle } from "./ListComponent.style";
-class ListComponent extends Component {
-  state = {
-    counter: 4,
-    users: []
-  }
-  componentDidMount() {
-    const newList = [{user:'a'},{user:'b'},{user:'c'},{user:'e'},{user:'d'}]
+
+const listComponentSkeleton = React.lazy(() => import('./ListComponentSkeleton'));
+
+const ListComponent = () => {
+  const [users, setUser] = useState([]); //?  state data here  
+
+  useEffect(() => {   //? new life cycle hook here 
+    LoadUserAsSideEffect()
+  }, []); //?   we add dependency here 
+
+  const LoadUserAsSideEffect = (user) => {
+    Log.trace('Login componentDidUpdate!', user);
     setTimeout(() => {
-      this.setState({ users: [...this.state.users, ...newList] });
+      setUser([{ user: 'aaaaaa' }, { user: 'bbbbbb' }, { user: 'ccccccc' }, { user: 'eeeeee' }, { user: 'ddddddd' }])
     }, 2000);
   }
 
-  render() {
-    return (
-      <div >
-          ***List***
-        <SmartLoaderWrapper data={this.state.users} iterator={5} loadingComponentStyle={ListComponentStyle} >
-          {this.state.users.length > 0 && this.state.users.map((items) => {
-            return (
-              <div key={items.user}>{console.log("items", items)
-              } {items.user}</div>
-            )
-          })}
-        </SmartLoaderWrapper>
-      </div>
-    );
-  }
+  return (
+    <div >
+      <SmartLoaderWrapper data={users} iterator={5} skeletonComponent={listComponentSkeleton} >
+        {users.length > 0 && users.map((items) => {
+          return <div key={items.user} style={{ width: '200px', height: '30px', marginTop: '20px' }}>{items.user}</div>
+        })}
+      </SmartLoaderWrapper>
+    </div>
+  )
 }
 
-export default ListComponent;
+export default ListComponent
+
