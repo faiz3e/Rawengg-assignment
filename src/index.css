@@ -12,3 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.text-color-red {
+  color: red;
+}
+.pointer{
+  cursor: pointer;
+}
+#root{
+  width: 100% !important;
+}

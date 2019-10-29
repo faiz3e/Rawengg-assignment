@@ -11,7 +11,6 @@ export class InputBox extends Component {
 				{touched[field.name] &&
 					errors[field.name] && <div className="error">{errors[field.name]}</div>
 				}
-
 			</React.Fragment>
 		);
 	}

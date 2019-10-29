@@ -6,8 +6,7 @@ export class StatusMessage extends Component {
 		return (
 			<div>
 				{message.length > 0 &&
-					<p style={{color:'red'}}
-					>{message.toLocaleLowerCase()}</p>
+					<p>{message.toLocaleLowerCase()}</p>
 				}
 			</div>
 		);

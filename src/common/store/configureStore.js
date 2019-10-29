@@ -10,7 +10,7 @@ export const configureStore = () => {
     const store = createStore(rootReducer, (applyMiddleware(sagaMiddleware)))
     sagaMiddleware.run(rootSaga);
     store.subscribe(() => {
-        console.log("updated store", store.getState())
+        // console.log("updated store", store.getState())
     })
 return store
 }

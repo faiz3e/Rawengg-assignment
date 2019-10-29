@@ -23,3 +23,20 @@ export const loginAPI = async (email, password) => {
 		return token
 	}
 }
+
+export const addDetailsApi=async(values)=>{
+	const authData = {
+        method: 'GET',
+        // headers: new Headers(),
+        // body: JSON.stringify({
+        //     values:values
+           
+        // })
+	}
+	
+	const resp = fetch(`https://rawengg-92652.firebaseio.com/data.json`,authData);
+	const r = await resp;
+	let data = await r.json();
+	console.log("data",data);
+	
+}

@@ -10,6 +10,7 @@ export const validateEmail = value => {
     }
 };
 
+
 export const validatePassword = value => {
     let errorMessage;
     if (value.length === 0) {
